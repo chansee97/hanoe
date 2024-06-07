@@ -5,7 +5,7 @@ interface Props {
   defaultValue?: string
   onChange?: (value: string ) => void
 }
-export function Test(props: Props) {
+export function Input(props: Props) {
   const { value: propsValue, defaultValue, onChange } = props
 
   const [value, setValue] = useState(() => {

@@ -1,0 +1,31 @@
+.calendar-wrapper{
+  width: 350px;
+  border: 1px solid #ddd;
+}
+.calendar-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.calendar-days__week{
+  background-color: #ddd;
+}
+.calendar-days{
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+.calendar-days > div{
+  place-self: stretch;
+  text-align: center;
+  padding:6px 0;
+}
+.calendar-days__pre{
+  color: #999;
+}
+.calendar-days__active{
+  background-color: deepskyblue;
+  color: white;
+  border-radius: 3px;
+}
