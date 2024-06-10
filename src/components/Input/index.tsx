@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-
+import './style.scss'
 interface Props {
   value?: string
   defaultValue?: string
@@ -38,6 +38,7 @@ export function Input(props: Props) {
 
   return (
     <input
+      className='input'
       value={mergedValue}
       onChange={ handleChange }
     />

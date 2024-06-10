@@ -1,0 +1,47 @@
+.mini-calendar {
+  width: 350px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 4px;
+
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+  }
+
+  .calendar-days__week {
+    /* background-color: #ddd; */
+  }
+
+  .calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    place-items: center;
+    gap: 1em;
+  }
+
+  .calendar-days__pre {
+    color: #999;
+  }
+
+  .calendar-days__day {
+    cursor: pointer;
+    border-radius: 3px;
+    width: 2em;
+    height: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .calendar-days__day:hover {
+    background-color: #ddd;
+  }
+
+  .calendar-days__active {
+    background-color: #007bff;
+    color: white;
+  }
+}
