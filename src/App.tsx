@@ -2,7 +2,8 @@ import ForwardRef from './basicUse/forwardRef'
 import UseContext from './basicUse/useContext'
 import UseState from './basicUse/useState'
 import Memo from './basicUse/memo'
-import { useInterval } from './hooks/useInterval'
+import { useInterval } from './hooks'
+import { useSize } from './hooks'
 import { useState, useRef } from 'react'
 import dayjs from 'dayjs'
 import { Input, MiniCalendar, MiniCalendarRef, Calendar, Icon, createIcon, createFromIconfont, Space, Portal, MutateObserver, Watermark, Lazyload } from './components'
@@ -38,13 +39,22 @@ export default function App() {
   };
 
   const [observerState, setObserverState] = useState('aaa');
+
+  const sizeRef = useRef(null)
+  const size = useSize(sizeRef)
   return (
     <div className="app">
+      <div>
+        <p> useSize hooks</p>
+        <div style={{ resize:'both',width:'100px',height:'100px', overflow:'auto', background:'red'}} ref={sizeRef}>
+          <p>{size?.height}</p>
+          <p>{size?.width}</p>
+        </div>
+      </div>
       <div>
         <Watermark content={['测试水印', '测试水印副标题']}>
           <div style={{ height: '500px' }}>
             <p> Watermark 组件</p>
-            <button>切换水印显示</button>
           </div>
         </Watermark>
       </div>
