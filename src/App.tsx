@@ -2,8 +2,7 @@ import ForwardRef from './basicUse/forwardRef'
 import UseContext from './basicUse/useContext'
 import UseState from './basicUse/useState'
 import Memo from './basicUse/memo'
-import { useInterval } from './hooks'
-import { useSize } from './hooks'
+import { useSize, useInterval,useHover } from './hooks'
 import { useState, useRef } from 'react'
 import dayjs from 'dayjs'
 import { Input, MiniCalendar, MiniCalendarRef, Calendar, Icon, createIcon, createFromIconfont, Space, Portal, MutateObserver, Watermark, Lazyload } from './components'
@@ -42,8 +41,16 @@ export default function App() {
 
   const sizeRef = useRef(null)
   const size = useSize(sizeRef)
+  
+  const hoverRef = useRef(null)
+  const isHover = useHover(hoverRef)
   return (
     <div className="app">
+      <div>
+        <p> useHover hooks</p>
+        <div ref={hoverRef}>hover me</div>
+        {isHover && <p>isHover</p>}
+      </div>
       <div>
         <p> useSize hooks</p>
         <div style={{ resize:'both',width:'100px',height:'100px', overflow:'auto', background:'red'}} ref={sizeRef}>

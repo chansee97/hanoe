@@ -1,27 +1,29 @@
-import { cloneElement, useState } from "react";
+import { RefObject, useEffect, useState } from 'react'
 
-export type Element = ((state: boolean) => React.ReactElement) | React.ReactElement;
+export interface Options {
+  onEnter?: () => void
+  onLeave?: () => void
+  onChange?: (isHovering: boolean) => void
+}
 
-export const useHover = (element: Element): [React.ReactElement, boolean] => {
-  const [state, setState] = useState(false);
+export function useHover (ref: RefObject<HTMLElement>, options?: Options): boolean {
+  const { onEnter, onLeave, onChange } = options || {}
 
-  const onMouseEnter = (originalOnMouseEnter?: any) => (event: any) => {
-    originalOnMouseEnter?.(event);
-    setState(true);
-  };
-  const onMouseLeave = (originalOnMouseLeave?: any) => (event: any) => {
-    originalOnMouseLeave?.(event);
-    setState(false);
-  };
+  const [isEnter, setIsEnter] = useState<boolean>(false)
 
-  if (typeof element === 'function') {
-    element = element(state);
-  }
+  useEffect(() => {
+    ref.current?.addEventListener('mouseenter', () => {
+      onEnter?.()
+      setIsEnter(true)
+      onChange?.(true)
+    })
 
-  const el = cloneElement(element, {
-    onMouseEnter: onMouseEnter(element.props.onMouseEnter),
-    onMouseLeave: onMouseLeave(element.props.onMouseLeave),
-  });
+    ref.current?.addEventListener('mouseleave', () => {
+      onLeave?.()
+      setIsEnter(false)
+      onChange?.(false)
+    })
+  }, [ref])
 
-  return [el, state];
-};
+  return isEnter
+}
