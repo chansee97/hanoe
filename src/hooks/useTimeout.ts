@@ -1,13 +1,13 @@
 import { useCallback, useEffect, useRef } from 'react';
 
-export function useTimeout(callback: () => void, delay: number) {
+export function useTimeout(fn: () => void, delay: number) {
 
-  const callbackRef = useRef<Function>(callback);
+  const fnRef = useRef<Function>(fn);
+  
+  fnRef.current = fn;
 
   const timerRef = useRef<number>();
   
-  callbackRef.current = callback;
-
   const clear = useCallback(() => {
     if (timerRef.current) {
       clearTimeout(timerRef.current);
@@ -15,7 +15,7 @@ export function useTimeout(callback: () => void, delay: number) {
   }, [])
 
   useEffect(() => {
-    timerRef.current = setTimeout(callbackRef.current, delay)
+    timerRef.current = window.setTimeout(() => fnRef.current(), delay)
 
     return clear
   }, [delay])
