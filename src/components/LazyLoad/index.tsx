@@ -4,10 +4,11 @@ import {
   ReactNode,
   useEffect,
   useRef,
-  useState
+  useState,
+  PropsWithChildren
 } from 'react';
 
-interface LazyloadProps {
+interface LazyloadProps extends PropsWithChildren {
   className?: string,
   style?: CSSProperties,
   placeholder?: ReactNode,
@@ -15,7 +16,6 @@ interface LazyloadProps {
   width?: number | string,
   height?: string | number,
   onContentVisible?: () => void,
-  children: ReactNode,
 }
 
 export const Lazyload: FC<LazyloadProps> = (props) => {

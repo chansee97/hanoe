@@ -12,6 +12,10 @@ code {
     monospace;
 }
 
+html, body, #root{
+  height: 100%;
+}
+
 .app {
   display: flex;
   flex-direction: column;
@@ -40,4 +44,10 @@ code {
   height: 300px;
   border-radius: 4px;
   border: 1px solid #ccc;
+}
+
+.flex-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

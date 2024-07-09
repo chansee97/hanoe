@@ -1,0 +1,27 @@
+.layout {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  grid-template-rows: 60px 1fr;
+  height: 100%;
+
+  header {
+    grid-column: span 2 / span 2;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    padding: 0 1em;
+    gap: 6px;
+  }
+
+  aside {
+    border-right: 1px solid #ccc;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  main {
+    background-color: #fff;
+  }
+}
